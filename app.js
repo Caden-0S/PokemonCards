@@ -122,6 +122,56 @@ const actionModal = document.querySelector("#action-modal");
 const actionTitle = document.querySelector("#action-title");
 const actionMessage = document.querySelector("#action-message");
 const actionContent = document.querySelector("#action-content");
+const loginPage = document.querySelector("#login-page");
+const loginForm = document.querySelector("#login-form");
+const loginUsername = document.querySelector("#login-username");
+const loginPassword = document.querySelector("#login-password");
+const loginError = document.querySelector("#login-error");
+const appShell = document.querySelector(".app-shell");
+const authStorageKey = "binderly-authenticated";
+const accountStorageKey = "binderly-local-account";
+
+function showApplication() {
+  loginPage.classList.add("hidden");
+  appShell.classList.remove("is-locked");
+}
+
+function authenticate(username, password) {
+  const normalizedUsername = username.trim().toLowerCase();
+  const savedAccount = JSON.parse(
+    localStorage.getItem(accountStorageKey) || "null",
+  );
+
+  if (!savedAccount) {
+    localStorage.setItem(
+      accountStorageKey,
+      JSON.stringify({ username: normalizedUsername, password }),
+    );
+    return true;
+  }
+
+  return (
+    savedAccount.username === normalizedUsername &&
+    savedAccount.password === password
+  );
+}
+
+loginForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+  loginError.textContent = "";
+
+  if (!authenticate(loginUsername.value, loginPassword.value)) {
+    loginError.textContent = "Incorrect username or password.";
+    loginPassword.select();
+    return;
+  }
+
+  localStorage.setItem(authStorageKey, "true");
+  showApplication();
+  loginForm.reset();
+  loginUsername.blur();
+  initializeApplication();
+});
 
 function openCatalogCache() {
   return new Promise((resolve, reject) => {
@@ -685,7 +735,7 @@ document
     openActionModal(
       "Caden Jones",
       "Collector since 2021",
-      '<p class="action-copy">Your collection preferences and progress are stored locally in this browser.</p>',
+      '<p class="action-copy">Your collection preferences and progress are stored locally in this browser.</p><button class="secondary-button action-submit" id="sign-out">Sign out</button>',
     ),
   );
 document
@@ -695,15 +745,24 @@ actionModal.addEventListener("click", (event) => {
   if (event.target === actionModal) closeActionModal();
 });
 actionContent.addEventListener("click", (event) => {
-  if (event.target.id !== "clear-local-data") return;
-  localStorage.removeItem("binderly-wishlist");
-  localStorage.removeItem("binderly-psa-grades");
-  indexedDB.deleteDatabase("binderly-cache");
-  savedCards = new Set();
-  psaGrades = {};
-  closeActionModal();
-  renderCards();
-  showToast("Local collection data cleared");
+  if (event.target.id === "clear-local-data") {
+    localStorage.removeItem("binderly-wishlist");
+    localStorage.removeItem("binderly-psa-grades");
+    indexedDB.deleteDatabase("binderly-cache");
+    savedCards = new Set();
+    psaGrades = {};
+    closeActionModal();
+    renderCards();
+    showToast("Local collection data cleared");
+  }
+  if (event.target.id === "sign-out") {
+    localStorage.removeItem(authStorageKey);
+    closeActionModal();
+    appShell.classList.add("is-locked");
+    loginPage.classList.remove("hidden");
+    loginForm.reset();
+    loginUsername.focus();
+  }
 });
 document
   .querySelector("#close-grade-modal")
@@ -723,6 +782,12 @@ document.addEventListener("keydown", (event) => {
   if (event.key === "Escape" && !actionModal.classList.contains("hidden"))
     closeActionModal();
 });
-updateStats();
-renderCards();
-loadCatalog();
+function initializeApplication() {
+  if (localStorage.getItem(authStorageKey) !== "true") return;
+  showApplication();
+  updateStats();
+  renderCards();
+  loadCatalog();
+}
+
+initializeApplication();

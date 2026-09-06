@@ -14,7 +14,65 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <div class="app-shell">
+    <section class="login-page" id="login-page" aria-labelledby="login-title">
+      <div class="login-art" aria-hidden="true">
+        <span class="login-orbit orbit-one"></span>
+        <span class="login-orbit orbit-two"></span>
+        <span class="login-card card-one">✦</span>
+        <span class="login-card card-two">♡</span>
+        <span class="login-card card-three">▦</span>
+      </div>
+      <div class="login-panel">
+        <a
+          class="brand login-brand"
+          href="#login-page"
+          aria-label="Binderly home"
+        >
+          <span class="brand-mark">B</span>
+          <span>Binderly</span>
+        </a>
+        <p class="eyebrow">Your collection, in one place</p>
+        <h1 id="login-title">Welcome back.</h1>
+        <p class="login-subtitle">
+          Sign in to keep building a binder full of cards you love.
+        </p>
+        <form class="login-form" id="login-form">
+          <label class="login-label" for="login-username"
+            >Username or email</label
+          >
+          <input
+            class="login-input"
+            id="login-username"
+            name="username"
+            type="text"
+            autocomplete="username"
+            placeholder="Enter your username or email"
+            required
+          />
+          <label class="login-label" for="login-password">Password</label>
+          <input
+            class="login-input"
+            id="login-password"
+            name="password"
+            type="password"
+            autocomplete="current-password"
+            placeholder="Enter your password"
+            required
+          />
+          <p
+            class="login-error"
+            id="login-error"
+            role="alert"
+            aria-live="polite"
+          ></p>
+          <button class="primary-button login-submit" type="submit">
+            Sign in <span>→</span>
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <div class="app-shell is-locked">
       <aside class="sidebar" aria-label="Primary navigation">
         <a class="brand" href="#top" aria-label="Binderly home">
           <span class="brand-mark">B</span>
