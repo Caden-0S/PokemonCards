@@ -8,7 +8,7 @@ const fallbackCards = [
     type: "electric",
     rarity: "Rare",
     image: "https://images.pokemontcg.io/base1/58.png",
-    owned: true,
+    owned: false,
   },
   {
     name: "Charizard",
@@ -19,7 +19,7 @@ const fallbackCards = [
     type: "fire",
     rarity: "Holo Rare",
     image: "https://images.pokemontcg.io/base1/4.png",
-    owned: true,
+    owned: false,
   },
   {
     name: "Blastoise",
@@ -30,7 +30,7 @@ const fallbackCards = [
     type: "water",
     rarity: "Holo Rare",
     image: "https://images.pokemontcg.io/base1/2.png",
-    owned: true,
+    owned: false,
   },
   {
     name: "Venusaur",
@@ -52,7 +52,7 @@ const fallbackCards = [
     type: "water",
     rarity: "Holo Rare",
     image: "https://images.pokemontcg.io/neo1/9.png",
-    owned: true,
+    owned: false,
   },
   {
     name: "Typhlosion",
@@ -63,7 +63,7 @@ const fallbackCards = [
     type: "fire",
     rarity: "Rare",
     image: "https://images.pokemontcg.io/neo1/17.png",
-    owned: true,
+    owned: false,
   },
   {
     name: "Mew ex",
@@ -74,7 +74,7 @@ const fallbackCards = [
     type: "psychic",
     rarity: "Ultra Rare",
     image: "https://images.pokemontcg.io/sv151/193.png",
-    owned: true,
+    owned: false,
   },
   {
     name: "Eevee",
@@ -85,7 +85,7 @@ const fallbackCards = [
     type: "colorless",
     rarity: "Uncommon",
     image: "https://images.pokemontcg.io/jungle/51.png",
-    owned: true,
+    owned: false,
   },
 ];
 
@@ -94,7 +94,7 @@ let activeView = "all";
 let currentPage = 1;
 const pageSize = 24;
 let sortMode = "recent";
-const catalogCacheVersion = 1;
+const catalogCacheVersion = 2;
 const catalogCacheMaxAge = 24 * 60 * 60 * 1000;
 let savedCards = new Set(
   JSON.parse(localStorage.getItem("binderly-wishlist") || "[]"),
@@ -364,13 +364,7 @@ async function loadCatalog() {
       resultCount.textContent = `Loading ${results.length.toLocaleString()} cards...`;
     }
     if (results.length) {
-      const ownedNames = new Set(
-        fallbackCards.filter((card) => card.owned).map((card) => card.name),
-      );
-      cards = results.map((card) => ({
-        ...card,
-        owned: ownedNames.has(card.name),
-      }));
+      cards = results.map((card) => ({ ...card, owned: false }));
       catalogSetLists = setLists;
       applyCatalog(cards, setLists);
       await writeCatalogCache();
