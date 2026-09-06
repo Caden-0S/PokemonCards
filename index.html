@@ -1,118 +1,262 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#f5f1e8" />
-  <title>Binderly | Pokémon Card Tracker</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css" />
-</head>
-<body>
-  <div class="app-shell">
-    <aside class="sidebar" aria-label="Primary navigation">
-      <a class="brand" href="#top" aria-label="Binderly home">
-        <span class="brand-mark">B</span>
-        <span>Binderly</span>
-      </a>
-      <p class="nav-label">Workspace</p>
-      <nav class="main-nav">
-        <a class="nav-item active" href="#collection" data-nav="collection"><span class="nav-icon">▦</span>Collection <span class="nav-count">0</span></a>
-        <a class="nav-item" href="#wishlist" data-nav="wishlist"><span class="nav-icon">♡</span>Wishlist <span class="nav-count">12</span></a>
-        <a class="nav-item" href="#sets" data-nav="sets"><span class="nav-icon">◫</span>Sets <span class="nav-count">7</span></a>
-      </nav>
-      <div class="sidebar-spacer"></div>
-      <div class="side-note">
-        <span class="spark">✦</span>
-        <strong>Small steps,<br />full binders.</strong>
-        <p>Your collection is 68% complete.</p>
-        <div class="mini-progress"><span></span></div>
-      </div>
-      <a class="nav-item settings" href="#settings" data-nav="settings"><span class="nav-icon">⚙</span>Settings</a>
-      <div class="profile">
-        <div class="avatar">CJ</div>
-        <div><strong>Caden Jones</strong><small>Collector since 2021</small></div>
-        <button class="more-button" id="profile-button" aria-label="Profile menu">•••</button>
-      </div>
-    </aside>
-
-    <main id="top" class="main-content">
-      <header class="topbar">
-        <button class="mobile-menu" aria-label="Open navigation">☰</button>
-        <div class="crumbs"><span>Workspace</span><b>/</b><strong>Collection</strong></div>
-        <div class="top-actions">
-          <button class="icon-button" id="notifications-button" aria-label="Notifications">♢<span class="notification-dot"></span></button>
-          <button class="help-button" id="help-button">? <span>Help center</span></button>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f5f1e8" />
+    <title>Binderly | Pokémon Card Tracker</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="Primary navigation">
+        <a class="brand" href="#top" aria-label="Binderly home">
+          <span class="brand-mark">B</span>
+          <span>Binderly</span>
+        </a>
+        <p class="nav-label">Workspace</p>
+        <nav class="main-nav">
+          <a class="nav-item active" href="#collection" data-nav="collection"
+            ><span class="nav-icon">▦</span>Collection
+            <span class="nav-count">0</span></a
+          >
+          <a class="nav-item" href="#wishlist" data-nav="wishlist"
+            ><span class="nav-icon">♡</span>Wishlist
+            <span class="nav-count">12</span></a
+          >
+          <a class="nav-item" href="#sets" data-nav="sets"
+            ><span class="nav-icon">◫</span>Sets
+            <span class="nav-count">7</span></a
+          >
+        </nav>
+        <div class="sidebar-spacer"></div>
+        <div class="side-note">
+          <span class="spark">✦</span>
+          <strong>Small steps,<br />full binders.</strong>
+          <p>Your collection is 68% complete.</p>
+          <div class="mini-progress"><span></span></div>
         </div>
-      </header>
-
-      <section class="page-heading" id="collection">
-        <div>
-          <p class="eyebrow">Saturday, September 06, 2026</p>
-          <h1>Your collection <em>so far.</em></h1>
-          <p class="subtitle">Keep tabs on the cards you love, the cards you need, and everything in between.</p>
+        <a class="nav-item settings" href="#settings" data-nav="settings"
+          ><span class="nav-icon">⚙</span>Settings</a
+        >
+        <div class="profile">
+          <div class="avatar">CJ</div>
+          <div>
+            <strong>Caden Jones</strong><small>Collector since 2021</small>
+          </div>
+          <button
+            class="more-button"
+            id="profile-button"
+            aria-label="Profile menu"
+          >
+            •••
+          </button>
         </div>
-        <button class="primary-button" id="add-card-button"><span>+</span> Add a card</button>
-      </section>
+      </aside>
 
-      <section class="stats-grid" aria-label="Collection overview">
-        <article class="stat-card accent-card"><span class="stat-icon">▦</span><p>Total cards</p><strong id="total-count">0</strong><small><b>EN + JP</b> catalog</small></article>
-        <article class="stat-card"><span class="stat-icon soft">◫</span><p>Sets completed</p><strong>7 <small>/ 18</small></strong><div class="stat-bar"><span style="width:39%"></span></div><small>39% of your sets</small></article>
-        <article class="stat-card"><span class="stat-icon gold">✦</span><p>Collection value</p><strong>$2,840<small>.50</small></strong><small><b class="green">↑ 12.4%</b> this month</small></article>
-        <article class="stat-card"><span class="stat-icon pink">♡</span><p>Wishlist</p><strong id="wishlist-count">12</strong><small>3 high priority</small></article>
-      </section>
+      <main id="top" class="main-content">
+        <header class="topbar">
+          <button class="mobile-menu" aria-label="Open navigation">☰</button>
+          <div class="crumbs">
+            <span>Workspace</span><b>/</b><strong>Collection</strong>
+          </div>
+          <div class="top-actions">
+            <button
+              class="icon-button"
+              id="notifications-button"
+              aria-label="Notifications"
+            >
+              ♢<span class="notification-dot"></span>
+            </button>
+            <button class="help-button" id="help-button">
+              ? <span>Help center</span>
+            </button>
+          </div>
+        </header>
 
-      <section class="collection-toolbar" aria-label="Card filters">
-        <div class="section-title"><h2>All cards</h2><span id="result-count">Loading catalog...</span></div>
-        <div class="controls">
-          <label class="search-box"><span>⌕</span><input id="search-input" type="search" placeholder="Search cards..." /></label>
-          <select id="language-filter" aria-label="Filter by language"><option value="all">All languages</option><option value="en">English</option><option value="ja">Japanese</option></select>
-          <select id="set-filter" aria-label="Filter by set"><option value="all">All sets</option></select>
-          <select id="type-filter" aria-label="Filter by type"><option value="all">All types</option><option value="fire">Fire</option><option value="water">Water</option><option value="grass">Grass</option><option value="electric">Electric</option><option value="psychic">Psychic</option><option value="fighting">Fighting</option><option value="darkness">Darkness</option><option value="metal">Metal</option><option value="dragon">Dragon</option><option value="fairy">Fairy</option><option value="colorless">Colorless</option><option value="other">Other / Trainer</option></select>
-          <select id="rarity-filter" aria-label="Filter by rarity"><option value="all">All rarities</option><option value="standard">Standard</option><option value="holo">Holo</option><option value="special">Special</option></select>
-          <button class="filter-button" id="sort-button">Sort: Recently added <span>⌄</span></button>
+        <section class="page-heading" id="collection">
+          <div>
+            <p class="eyebrow">Saturday, September 06, 2026</p>
+            <h1>Your collection <em>so far.</em></h1>
+            <p class="subtitle">
+              Keep tabs on the cards you love, the cards you need, and
+              everything in between.
+            </p>
+          </div>
+          <button class="primary-button" id="add-card-button">
+            <span>+</span> Add a card
+          </button>
+        </section>
+
+        <section class="stats-grid" aria-label="Collection overview">
+          <article class="stat-card accent-card">
+            <span class="stat-icon">▦</span>
+            <p>Total cards</p>
+            <strong id="total-count">0</strong
+            ><small><b>EN + JP</b> catalog</small>
+          </article>
+          <article class="stat-card">
+            <span class="stat-icon soft">◫</span>
+            <p>Sets completed</p>
+            <strong>7 <small>/ 18</small></strong>
+            <div class="stat-bar"><span style="width: 39%"></span></div>
+            <small>39% of your sets</small>
+          </article>
+          <article class="stat-card">
+            <span class="stat-icon gold">✦</span>
+            <p>Collection value</p>
+            <strong>$2,840<small>.50</small></strong
+            ><small><b class="green">↑ 12.4%</b> this month</small>
+          </article>
+          <article class="stat-card">
+            <span class="stat-icon pink">♡</span>
+            <p>Wishlist</p>
+            <strong id="wishlist-count">12</strong
+            ><small>3 high priority</small>
+          </article>
+        </section>
+
+        <section class="collection-toolbar" aria-label="Card filters">
+          <div class="section-title">
+            <h2>All cards</h2>
+            <span id="result-count">Loading catalog...</span>
+          </div>
+          <div class="controls">
+            <label class="search-box"
+              ><span>⌕</span
+              ><input
+                id="search-input"
+                type="search"
+                placeholder="Search cards..."
+            /></label>
+            <select id="language-filter" aria-label="Filter by language">
+              <option value="all">All languages</option>
+              <option value="en">English</option>
+              <option value="ja">Japanese</option>
+            </select>
+            <select id="set-filter" aria-label="Filter by set">
+              <option value="all">All sets</option>
+            </select>
+            <select id="type-filter" aria-label="Filter by type">
+              <option value="all">All types</option>
+              <option value="fire">Fire</option>
+              <option value="water">Water</option>
+              <option value="grass">Grass</option>
+              <option value="electric">Electric</option>
+              <option value="psychic">Psychic</option>
+              <option value="fighting">Fighting</option>
+              <option value="darkness">Darkness</option>
+              <option value="metal">Metal</option>
+              <option value="dragon">Dragon</option>
+              <option value="fairy">Fairy</option>
+              <option value="colorless">Colorless</option>
+              <option value="other">Other / Trainer</option>
+            </select>
+            <select id="rarity-filter" aria-label="Filter by rarity">
+              <option value="all">All rarities</option>
+              <option value="standard">Standard</option>
+              <option value="holo">Holo</option>
+              <option value="special">Special</option>
+            </select>
+            <button class="filter-button" id="sort-button">
+              Sort: Recently added <span>⌄</span>
+            </button>
+          </div>
+        </section>
+
+        <div class="view-tabs" role="tablist" aria-label="Collection views">
+          <button class="view-tab active" data-view="all" role="tab">
+            All cards <span id="all-tab-count">0</span>
+          </button>
+          <button class="view-tab" data-view="owned" role="tab">
+            Owned <span id="owned-tab-count">0</span>
+          </button>
+          <button class="view-tab" data-view="wishlist" role="tab">
+            Wishlist <span id="wishlist-tab-count">12</span>
+          </button>
         </div>
-      </section>
 
-      <div class="view-tabs" role="tablist" aria-label="Collection views">
-        <button class="view-tab active" data-view="all" role="tab">All cards <span id="all-tab-count">0</span></button>
-        <button class="view-tab" data-view="owned" role="tab">Owned <span id="owned-tab-count">0</span></button>
-        <button class="view-tab" data-view="wishlist" role="tab">Wishlist <span id="wishlist-tab-count">12</span></button>
-      </div>
-
-      <section class="card-grid" id="card-grid" aria-live="polite"></section>
-      <div class="empty-state hidden" id="empty-state"><span>⌕</span><h3>No cards found</h3><p>Try a different search or filter.</p></div>
-      <footer class="page-footer"><span>Showing <b id="footer-count">0</b> of <b id="catalog-count">0</b> cards</span><div class="pagination" id="pagination"></div></footer>
-    </main>
-  </div>
-  <div class="modal-backdrop hidden" id="grade-modal" role="dialog" aria-modal="true" aria-labelledby="grade-title">
-    <div class="grade-modal">
-      <button class="modal-close" id="close-grade-modal" aria-label="Close PSA grade editor">×</button>
-      <p class="eyebrow">Card condition</p>
-      <h2 id="grade-title">Add PSA grade</h2>
-      <p class="grade-card-name" id="grade-card-name"></p>
-      <label class="grade-label" for="psa-grade">PSA grade</label>
-      <select id="psa-grade">
-        <option value="">Not graded</option>
-        <option value="1">PSA 1</option><option value="2">PSA 2</option><option value="3">PSA 3</option>
-        <option value="4">PSA 4</option><option value="5">PSA 5</option><option value="6">PSA 6</option>
-        <option value="7">PSA 7</option><option value="8">PSA 8</option><option value="9">PSA 9</option><option value="10">PSA 10</option>
-      </select>
-      <div class="modal-actions"><button class="secondary-button" id="remove-grade">Clear grade</button><button class="primary-button" id="save-grade">Save grade</button></div>
+        <section class="card-grid" id="card-grid" aria-live="polite"></section>
+        <div class="empty-state hidden" id="empty-state">
+          <span>⌕</span>
+          <h3>No cards found</h3>
+          <p>Try a different search or filter.</p>
+        </div>
+        <footer class="page-footer">
+          <span
+            >Showing <b id="footer-count">0</b> of
+            <b id="catalog-count">0</b> cards</span
+          >
+          <div class="pagination" id="pagination"></div>
+        </footer>
+      </main>
     </div>
-  </div>
-  <div class="modal-backdrop hidden" id="action-modal" role="dialog" aria-modal="true" aria-labelledby="action-title">
-    <div class="grade-modal">
-      <button class="modal-close" id="close-action-modal" aria-label="Close dialog">×</button>
-      <p class="eyebrow" id="action-eyebrow">Binderly</p>
-      <h2 id="action-title">Settings</h2>
-      <p class="grade-card-name" id="action-message"></p>
-      <div id="action-content"></div>
+    <div
+      class="modal-backdrop hidden"
+      id="grade-modal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="grade-title"
+    >
+      <div class="grade-modal">
+        <button
+          class="modal-close"
+          id="close-grade-modal"
+          aria-label="Close PSA grade editor"
+        >
+          ×
+        </button>
+        <p class="eyebrow">Card condition</p>
+        <h2 id="grade-title">Add PSA grade</h2>
+        <p class="grade-card-name" id="grade-card-name"></p>
+        <label class="grade-label" for="psa-grade">PSA grade</label>
+        <select id="psa-grade">
+          <option value="">Not graded</option>
+          <option value="1">PSA 1</option>
+          <option value="2">PSA 2</option>
+          <option value="3">PSA 3</option>
+          <option value="4">PSA 4</option>
+          <option value="5">PSA 5</option>
+          <option value="6">PSA 6</option>
+          <option value="7">PSA 7</option>
+          <option value="8">PSA 8</option>
+          <option value="9">PSA 9</option>
+          <option value="10">PSA 10</option>
+        </select>
+        <div class="modal-actions">
+          <button class="secondary-button" id="remove-grade">Clear grade</button
+          ><button class="primary-button" id="save-grade">Save grade</button>
+        </div>
+      </div>
     </div>
-  </div>
-  <div class="toast" id="toast" role="status"></div>
-  <script src="app.js"></script>
-</body>
+    <div
+      class="modal-backdrop hidden"
+      id="action-modal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="action-title"
+    >
+      <div class="grade-modal">
+        <button
+          class="modal-close"
+          id="close-action-modal"
+          aria-label="Close dialog"
+        >
+          ×
+        </button>
+        <p class="eyebrow" id="action-eyebrow">Binderly</p>
+        <h2 id="action-title">Settings</h2>
+        <p class="grade-card-name" id="action-message"></p>
+        <div id="action-content"></div>
+      </div>
+    </div>
+    <div class="toast" id="toast" role="status"></div>
+    <script src="app.js"></script>
+  </body>
 </html>
