@@ -31,7 +31,7 @@
           <span class="brand-mark">B</span>
           <span>Binderly</span>
         </a>
-        <p class="eyebrow">Your collection, in one place</p>
+        <p class="eyebrow" id="auth-eyebrow">Your collection, in one place</p>
         <h1 id="login-title">Welcome back.</h1>
         <p class="login-subtitle">
           Sign in to keep building a binder full of cards you love.
@@ -59,6 +59,20 @@
             placeholder="Enter your password"
             required
           />
+          <label
+            class="login-label hidden"
+            id="confirm-password-label"
+            for="confirm-password"
+            >Confirm password</label
+          >
+          <input
+            class="login-input hidden"
+            id="confirm-password"
+            name="confirm-password"
+            type="password"
+            autocomplete="new-password"
+            placeholder="Confirm your password"
+          />
           <p
             class="login-error"
             id="login-error"
@@ -69,6 +83,14 @@
             Sign in <span>→</span>
           </button>
         </form>
+        <div class="auth-divider"><span>or</span></div>
+        <a class="google-button" href="/auth/google"
+          >Continue with Google <span>G</span></a
+        >
+        <p class="auth-switch" id="auth-switch">
+          <span>Need an account?</span>
+          <button type="button" id="auth-mode-toggle">Sign up</button>
+        </p>
       </div>
     </section>
 
@@ -86,19 +108,21 @@
           >
           <a class="nav-item" href="#wishlist" data-nav="wishlist"
             ><span class="nav-icon">♡</span>Wishlist
-            <span class="nav-count">12</span></a
+            <span class="nav-count">0</span></a
           >
           <a class="nav-item" href="#sets" data-nav="sets"
             ><span class="nav-icon">◫</span>Sets
-            <span class="nav-count">7</span></a
+            <span class="nav-count" id="sets-nav-count">0</span></a
           >
         </nav>
         <div class="sidebar-spacer"></div>
         <div class="side-note">
           <span class="spark">✦</span>
           <strong>Small steps,<br />full binders.</strong>
-          <p>Your collection is 68% complete.</p>
-          <div class="mini-progress"><span></span></div>
+          <p id="collection-progress-label">Your collection is 0% complete.</p>
+          <div class="mini-progress">
+            <span id="collection-progress-bar"></span>
+          </div>
         </div>
         <a class="nav-item settings" href="#settings" data-nav="settings"
           ><span class="nav-icon">⚙</span>Settings</a
@@ -106,7 +130,8 @@
         <div class="profile">
           <div class="avatar">CJ</div>
           <div>
-            <strong>Caden Jones</strong><small>Collector since 2021</small>
+            <strong id="profile-name">Your profile</strong>
+            <small id="profile-email">Collector account</small>
           </div>
           <button
             class="more-button"
@@ -162,21 +187,25 @@
           <article class="stat-card">
             <span class="stat-icon soft">◫</span>
             <p>Sets completed</p>
-            <strong>7 <small>/ 18</small></strong>
-            <div class="stat-bar"><span style="width: 39%"></span></div>
-            <small>39% of your sets</small>
+            <strong
+              ><span id="sets-completed-count">0</span>
+              <small>/ <span id="sets-total-count">0</span></small></strong
+            >
+            <div class="stat-bar">
+              <span id="sets-completion-bar" style="width: 0%"></span>
+            </div>
+            <small id="sets-completion-label">0% of your sets</small>
           </article>
           <article class="stat-card">
             <span class="stat-icon gold">✦</span>
             <p>Collection value</p>
-            <strong>$2,840<small>.50</small></strong
-            ><small><b class="green">↑ 12.4%</b> this month</small>
+            <strong id="collection-value">$0.00</strong>
+            <small id="collection-value-label">Add cards to track value</small>
           </article>
           <article class="stat-card">
             <span class="stat-icon pink">♡</span>
             <p>Wishlist</p>
-            <strong id="wishlist-count">12</strong
-            ><small>3 high priority</small>
+            <strong id="wishlist-count">0</strong><small>3 high priority</small>
           </article>
         </section>
 
@@ -236,7 +265,7 @@
             Owned <span id="owned-tab-count">0</span>
           </button>
           <button class="view-tab" data-view="wishlist" role="tab">
-            Wishlist <span id="wishlist-tab-count">12</span>
+            Wishlist <span id="wishlist-tab-count">0</span>
           </button>
         </div>
 

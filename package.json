@@ -1,0 +1,7 @@
+{
+  "name": "pokemon-cards",
+  "private": true,
+  "scripts": {
+    "start": "node server.js"
+  }
+}
