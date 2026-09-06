@@ -6,7 +6,7 @@ const { randomUUID } = require("crypto");
 const { URL } = require("url");
 
 const port = Number(process.env.PORT || 8080);
-const root = __dirname;
+const root = path.join(__dirname, "public");
 const clientId = process.env.EBAY_CLIENT_ID;
 const clientSecret = process.env.EBAY_CLIENT_SECRET;
 const marketplaceId = process.env.EBAY_MARKETPLACE_ID || "EBAY_US";
